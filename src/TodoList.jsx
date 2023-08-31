@@ -1,11 +1,22 @@
 import React from 'react'
 
-function TodoList() {
+function TodoList({todos}) {
   return (
-    <div>
-      
-    </div>
-  )
+    <ul className='todo-list'>
+        {todos.map((todo) => (
+            <li key={todo.id}>
+                <Todo todo={todo}/>
+            </li>
+        ))}
+    </ul>
+  );
+}
+
+function Todo({todo}){
+    return <>
+    <input type="checkbox" name={`${todo.id}-done`} id={`${todo.id}-done`} checked= {todo.done}/>
+    {todo.text}
+    </>
 }
 
 export default TodoList
