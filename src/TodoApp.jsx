@@ -21,11 +21,26 @@ function TodoApp() {
             },
         ]); 
     }
+function handleTodoChange(updatedTodo){
+    setTodos(
+        todos.map((existingTodo) => {
+            if(existingTodo.id === updatedTodo.id){
+                return updatedTodo
+            } else {
+                return existingTodo;
+            }
+        })
+    );
+}
+function handleTodoDelete(todoId){
+    setTodos(todos.filter(todo => todo.id != todoId));
+}
+
   return (
     <>
     <h2>TodoApp</h2>
     <AddTodo onAddTodo={handleAddTodo}/>
-    <TodoList todos={todos} />
+    <TodoList todos={todos} onTodoChange={handleTodoChange} onTodoDelete={handleTodoDelete}/>
     </>
   )
 }
